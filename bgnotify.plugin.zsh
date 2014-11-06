@@ -42,10 +42,11 @@ bgnotify_begin() {
 bgnotify_end() {
   didexit=$?
   past_threshold=$(( $EPOCHSECONDS - $bgnotify_timestamp >= $bgnotify_threshold ))
-  is_background=$([[ "$(currentWindowId)" -eq "$bgnotify_windowid" ]])
-  if (( bgnotify_timestamp > 0 )) && (( past_threshold )) && (( ! is_background )); then
-    print -n "\a"
-    bgnotify $([ $didexit -ne 0 ] && echo '#fail' || echo '#win!') "$bgnotify_lastcmd"
+  if (( bgnotify_timestamp > 0 )) && (( past_threshold )); then
+    if [ $(currentWindowId) != "$bgnotify_windowid" ]; then
+      print -n "\a"
+      bgnotify $([ $didexit -ne 0 ] && echo '#fail' || echo '#win!') "$bgnotify_lastcmd"
+    fi
   fi
   bgnotify_timestamp=0 #reset it to 0!
 }
