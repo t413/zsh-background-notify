@@ -14,7 +14,7 @@ autoload -Uz add-zsh-hook || { print "can't add zsh hook!"; return }
 
 if ! (type notify_formatted | grep -q 'function'); then
   echo "using default notify_formatted"
-  function notify_formatted {
+  function bgnotify_formatted {
     ## exit_status, command, elapsed_time
     [ $1 -eq 0 ] && title="#win (took $3 s)" || title="#fail (took $3 s)"
     bgnotify "$title" "$2"
@@ -39,6 +39,9 @@ bgnotify () {
   fi
 }
 
+
+## Zsh hooks ##
+
 bgnotify_begin() {
   bgnotify_timestamp=$EPOCHSECONDS
   bgnotify_lastcmd=$1
@@ -52,7 +55,7 @@ bgnotify_end() {
   if (( bgnotify_timestamp > 0 )) && (( past_threshold )); then
     if [ $(currentWindowId) != "$bgnotify_windowid" ]; then
       print -n "\a"
-      notify_formatted "$didexit" "$bgnotify_lastcmd" "$elapsed"
+      bgnotify_formatted "$didexit" "$bgnotify_lastcmd" "$elapsed"
     fi
   fi
   bgnotify_timestamp=0 #reset it to 0!
