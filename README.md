@@ -16,6 +16,7 @@ echo 'source $HOME/.zsh-background-notify/bgnotify.plugin.zsh' >> ~/.zshrc
 - On OS X you'll need [terminal-notifer](https://github.com/alloy/terminal-notifier)
   * `brew install terminal-notifier` (or `gem install terminal-notifier`)
 - On ubuntu you're already all set!
+- On windows you can use [notifu](http://www.paralint.com/projects/notifu/) or the Cygwin Ports libnotify package
 
 
 ## Configuration
