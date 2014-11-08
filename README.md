@@ -18,6 +18,20 @@ echo 'source $HOME/.zsh-background-notify/bgnotify.plugin.zsh' >> ~/.zshrc
 - On ubuntu you're already all set!
 - On windows you can use [notifu](http://www.paralint.com/projects/notifu/) or the Cygwin Ports libnotify package
 
+## Screenshots
+
+**Linux**
+
+![screenshot from 2014-11-07 15 58 36](https://cloud.githubusercontent.com/assets/326829/4962187/256b465c-66da-11e4-927d-cc2fc105e31f.png)
+
+**Windows**
+
+![screenshot from 2014-11-07 15 55 00](https://cloud.githubusercontent.com/assets/326829/4962159/a2625ca0-66d9-11e4-9e91-c5834913190e.png)
+
+**OS X**
+
+TODO.
+
 
 ## Configuration
 
