@@ -24,13 +24,13 @@ echo 'source $HOME/.zsh-background-notify/bgnotify.plugin.zsh' >> ~/.zshrc
 
 ![screenshot from 2014-11-07 15 58 36](https://cloud.githubusercontent.com/assets/326829/4962187/256b465c-66da-11e4-927d-cc2fc105e31f.png)
 
+**OS X**
+
+![screenshot 2014-11-08 14 15 12](https://cloud.githubusercontent.com/assets/326829/4965780/19fa3eac-6795-11e4-8ed6-0355711123a9.png)
+
 **Windows**
 
 ![screenshot from 2014-11-07 15 55 00](https://cloud.githubusercontent.com/assets/326829/4962159/a2625ca0-66d9-11e4-9e91-c5834913190e.png)
-
-**OS X**
-
-TODO.
 
 
 ## Configuration

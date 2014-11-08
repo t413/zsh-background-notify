@@ -12,7 +12,7 @@ autoload -Uz add-zsh-hook || { print "can't add zsh hook!"; return }
 
 ## definitions ##
 
-if ! (type notify_formatted | grep -q 'function'); then
+if ! (type bgnotify_formatted | grep -q 'function'); then
   function bgnotify_formatted {
     ## exit_status, command, elapsed_time
     [ $1 -eq 0 ] && title="#win (took $3 s)" || title="#fail (took $3 s)"
@@ -24,7 +24,9 @@ currentWindowId () {
   if hash notify-send 2>/dev/null; then #ubuntu!
     xprop -root | awk '/NET_ACTIVE_WINDOW/ { print $5; exit }'
   elif hash osascript 2>/dev/null; then #osx
-    osascript -e 'tell application (path to frontmost application as text) to id of front window' 2&> /dev/null
+    osascript -e 'tell application (path to frontmost application as text) to id of front window' 2&> /dev/null || echo "0"
+  else
+    echo $EPOCHSECONDS #fallback for windows
   fi
 }
 
