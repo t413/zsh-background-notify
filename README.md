@@ -6,7 +6,9 @@ cross-platform background notifications for long running commands! Supports OSX 
 
 ## Update! Move to oh-my-zsh 
 
-I've incorporated this plugin into a fork of oh-my-zsh ([here!](https://github.com/t413/oh-my-zsh)) and created a pull request to make it main-line. If you'd like to add my repository as a remote and pull the chances or comment with a +1 please do! Meanwhile I'm updating both versions.
+I've incorporated this plugin into a fork of oh-my-zsh ([here!](https://github.com/t413/oh-my-zsh)) and created a [pull request](https://github.com/robbyrussell/oh-my-zsh/pull/3301) to make it main-line. Comment with a +1 to get it moving!
+
+Meanwhile I'm updating both versions! You can add my repository as a remote and use the oh-my-zsh version or follow the how-to below just like before. Have fun!
 
 ## How to use!
 
