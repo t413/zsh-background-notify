@@ -21,7 +21,7 @@ if ! (type bgnotify_formatted | grep -q 'function'); then
 fi
 
 currentWindowId () {
-  if hash notify-send 2>/dev/null; then #ubuntu!
+  if (hash notify-send 2>/dev/null || hash kdialog 2>/dev/null); then #ubuntu!
     xprop -root | awk '/NET_ACTIVE_WINDOW/ { print $5; exit }'
   elif hash osascript 2>/dev/null; then #osx
     osascript -e 'tell application (path to frontmost application as text) to id of front window' 2&> /dev/null || echo "0"
@@ -31,8 +31,10 @@ currentWindowId () {
 }
 
 bgnotify () {
-  if hash notify-send 2>/dev/null; then #ubuntu!
+  if hash notify-send 2>/dev/null; then #ubuntu gnome!
     notify-send $1 $2
+  elif hash kdialog 2>/dev/null; then #ubuntu kde!
+    kdialog  -title "$1" --passivepopup  "$2" 5
   elif hash terminal-notifier 2>/dev/null; then #osx
     terminal-notifier -message $2 -title $1
   elif hash growlnotify 2>/dev/null; then #osx growl
