@@ -14,9 +14,10 @@ autoload -Uz add-zsh-hook || { print "can't add zsh hook!"; return }
 
 if ! (type bgnotify_formatted | grep -q 'function'); then
   function bgnotify_formatted {
-    ## exit_status, command, elapsed_time
-    [ $1 -eq 0 ] && title="#win (took $3 s)" || title="#fail (took $3 s)"
-    bgnotify "$title" "$2"
+    ## exit_status, command, elapsed_seconds
+    minutes=$(( $3 / 60 ))
+    seconds=$(( $3 % 60 ))
+    [ $1 -eq 0 ] && title="#win (took $minutes:$seconds)" || title="#fail (took $minutes:$seconds)"
   }
 fi
 
