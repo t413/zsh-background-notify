@@ -11,7 +11,7 @@ autoload -Uz add-zsh-hook || { print "can't add zsh hook!"; return }
 
 ## definitions ##
 
-if ! (type bgnotify_formatted | grep -q 'function'); then
+if ! (type bgnotify_formatted | grep -q 'function'); then ## allow custom function override
   function bgnotify_formatted { ## args: (exit_status, command, elapsed_seconds)
     elapsed="$(( $3 % 60 ))s"
     (( $3 >= 60 )) && elapsed="$((( $3 % 3600) / 60 ))m $elapsed"
@@ -30,19 +30,13 @@ currentWindowId () {
   fi
 }
 
-bgnotify () {
+bgnotify () { ## args: (title, subtitle)
   if hash terminal-notifier 2>/dev/null; then #osx
-    if [[ "$TERM_PROGRAM" == 'iTerm.app' ]]; then
-      term_id='com.googlecode.iterm2'
-    elif [[ "$TERM_PROGRAM" == 'Apple_Terminal' ]]; then
-      term_id='com.apple.terminal'
-    fi
-
-    if [ -z "$term_id" ]; then
-      terminal-notifier -message "$2" -title "$1" >/dev/null
-    else
-      terminal-notifier -message "$2" -title "$1" -activate "$term_id" -sender "$term_id" >/dev/null
-    fi
+    [[ "$TERM_PROGRAM" == 'iTerm.app' ]] && term_id='com.googlecode.iterm2' ||
+    [[ "$TERM_PROGRAM" == 'Apple_Terminal' ]] && term_id='com.apple.terminal';
+    ## now call terminal-notifier, (hopefully with $term_id!)
+    [ -z "$term_id" ] && terminal-notifier -message "$2" -title "$1" >/dev/null ||
+    terminal-notifier -message "$2" -title "$1" -activate "$term_id" -sender "$term_id" >/dev/null
   elif hash growlnotify 2>/dev/null; then #osx growl
     growlnotify -m "$1" "$2"
   elif hash notify-send 2>/dev/null; then #ubuntu gnome!
@@ -59,7 +53,7 @@ bgnotify () {
 
 bgnotify_begin() {
   bgnotify_timestamp=$EPOCHSECONDS
-  bgnotify_lastcmd=$1
+  bgnotify_lastcmd="$1"
   bgnotify_windowid=$(currentWindowId)
 }
 
