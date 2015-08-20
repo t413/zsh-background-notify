@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 ## setup ##
 
 [[ -o interactive ]] || return #interactive only!
@@ -45,9 +44,9 @@ bgnotify () {
       terminal-notifier -message "$2" -title "$1" -activate "$term_id" -sender "$term_id" >/dev/null
     fi
   elif hash growlnotify 2>/dev/null; then #osx growl
-    growlnotify -m $1 $2
+    growlnotify -m "$1" "$2"
   elif hash notify-send 2>/dev/null; then #ubuntu gnome!
-    notify-send $1 $2
+    notify-send "$1" "$2"
   elif hash kdialog 2>/dev/null; then #ubuntu kde!
     kdialog  -title "$1" --passivepopup  "$2" 5
   elif hash notifu 2>/dev/null; then #cygwyn support!
